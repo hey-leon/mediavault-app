@@ -1,0 +1,50 @@
+<div id='imageViewer'
+     class='shade-bg-700'
+     ng-controller='ImageViewer as iv'
+     ng-mousemove='iv.mouseMoved()'
+     ng-show='iv.open'
+     layout='row'
+     layout-align='center center'>
+
+
+  <!-- Image Source  -->
+  <img class='image md-whiteframe-8dp' ng-src='{{iv.image}}'/>
+
+
+  <!-- Controls -->
+  <div class='controls md-whiteframe-8dp' ng-mouseenter='iv.controlEnter()' ng-mouseleave='iv.controlLeave()' ng-show='iv.controls' layout='row' layout-align='center center'>
+
+    <div layout='row' layout-align='end center' flex>
+      <div layout='row' class='text-light text-16' layout-padding layout-margin flex hide-xs>{{iv.title}}</div>
+      <md-button class='md-icon-button md-ico-btn-36' ng-click="iv.last()">
+        <i class="material-icons md-36 md-light">keyboard_arrow_left</i>
+      </md-button>
+    </div>
+
+    <div layout='row' layout-align='center center' flex>
+      <md-button class='md-icon-button md-ico-btn-18' ng-click='iv.download()'>
+        <i class="material-icons md-18 md-light">file_download</i>
+      </md-button>
+      <md-button class='md-icon-button md-ico-btn-18' ng-click=''>
+        <i class="material-icons md-18 md-light">fullscreen</i>
+      </md-button>
+      <md-button class='md-icon-button md-ico-btn-18' ng-click='iv.delete()'>
+        <i class="material-icons md-18 md-light">delete</i>
+      </md-button>
+    </div>
+
+    <div layout='row' layout-align='space-between center' flex>
+      <md-button class='md-icon-button md-ico-btn-36' ng-click="iv.next()">
+        <i class="material-icons md-36 md-light">keyboard_arrow_right</i>
+      </md-button>
+      <div layout='row' layout-align='end center' layout-margin flex>
+        <md-button class='md-icon-button md-ico-btn-24' ng-click="iv.close()">
+          <i class="material-icons md-light">close</i>
+        </md-button>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>

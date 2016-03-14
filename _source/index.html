@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='en' ng-app='Mediavault'>
+  <head>
+
+    <!-- Website meta data -->
+    <meta charset='utf-8'>
+    <title>Application Name</title>
+    <link rel="icon" href="resources/images/logo.gif">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name="google-signin-client_id" content="458427276391-0dtgnnbr7nukg6gvn91vqcmfumhvfcob.apps.googleusercontent.com">
+
+    <!-- Server loaded Stylesheets  -->
+    <link rel="stylesheet" href="resources/frameworks/angular-material/angular-material.min.css">
+
+    <!-- SASS is compiled to here (note: see gulpfile for details) -->
+    <link rel='stylesheet' href='styles.css'>
+
+
+    <!-- CDN loaded JS frameworks -->
+    <script src="https://apis.google.com/js/platform.js"></script>
+
+    <!-- Server loaded frameworks -->
+    <script src="resources/frameworks/angular/angular.min.js"></script>
+    <script src="resources/frameworks/angular-animate/angular-animate.min.js"></script>
+    <script src="resources/frameworks/angular-aria/angular-aria.min.js"></script>
+    <script src="resources/frameworks/angular-messages/angular-messages.min.js"></script>
+    <script src="resources/frameworks/angular-material/angular-material.min.js"></script>
+
+    <!-- JS is compiled to here (note: see gulpfile for details) -->
+    <script src='app.js'></script>
+    <script src='templates.js'></script>
+
+  </head>
+
+  <body  ng-controller='AuthCtrl as auth'>
+    <ng-include src='"login.tpl.html"' ng-show='!auth.signedIn'></ng-include>
+    <ng-include src='"browser/browser.tpl.html"' ng-show='auth.signedIn'></ng-include>
+  </body>
+
+</html>

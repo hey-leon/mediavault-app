@@ -1,0 +1,14 @@
+.panel {
+
+  max-width: 72rem;
+  margin: 2rem auto 4rem auto;
+  overflow-y: scroll;
+
+  .tile-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-top: 2rem;
+  }
+
+}

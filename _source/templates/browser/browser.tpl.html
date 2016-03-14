@@ -1,0 +1,33 @@
+<!-- the browser  -->
+<div class='browser' ng-controller='BrowserController as b'>
+
+  <!-- browser-menu -->
+  <ng-include src='"browser/menu.tpl.html"'></ng-include>
+
+  <!-- browser-side-nav -->
+  <ng-include src='"browser/side-nav.tpl.html"'></ng-include>
+
+  <!-- browser view -->
+  <md-tabs class='tabs' md-selected="b.currentTab" ng-show='b.showTabs'>
+    <md-tab ng-repeat="tab in b.tabs">
+      <md-tab-body><ng-include src='tab.content'></ng-include></md-tab-body>
+    </md-tab>
+  </md-tabs>
+
+  <!-- account info -->
+  <div class='browser-view' layout='column' ng-show=b.ShowAccountInfo></div>
+
+  <!-- account settings -->
+  <div class='browser-view' layout='column' ng-show=b.ShowAccountSettings></div>
+
+  <!-- audio-player -->
+  <ng-include src='"audio-player.tpl.html"'></ng-include>
+
+  <!-- video-player -->
+  <ng-include src='"video-player.tpl.html"'></ng-include>
+
+  <!-- image-viewer -->
+  <ng-include src='"image-viewer.tpl.html"'></ng-include>
+
+
+</div>

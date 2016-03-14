@@ -1,0 +1,57 @@
+.file {
+  width: 9rem;
+  height: 13rem;
+  margin: $padding-sml;
+
+  @include lrg { width: 11rem; height: 15rem; }
+  @include xlrg { width: 11rem; height: 15rem; }
+
+  .tile {
+    &:focus { outline: none; }
+    position: relative;
+    margin: 0; padding: 0;
+    width: 9rem; height: 9rem;
+    border-radius: 1px;
+    background: center no-repeat;
+    background-size: cover;
+    background-color: #efefef;
+    box-shadow: 0 0 1px 1px rgba(#000, .25);
+
+    @include lrg { width: 11rem; height: 11rem; }
+    @include xlrg { width: 11rem; height: 11rem; }
+
+    .menu {
+      position: absolute;
+      bottom: 0; right: 0;
+
+      margin: 0; padding: .25rem;
+      min-width: 2rem; min-height: 2rem;
+      line-height: 1;
+
+      border-radius: 0;
+      background-color: rgba(#000, .27);
+
+      z-index: 103;
+    }
+
+    .action { margin: 0; z-index: 102; }
+
+    .overlay {
+      position: absolute;
+      top: 0; right: 0; bottom: 0; left: 0;
+      background-color: rgba(#000, .57);
+      z-index: 101;
+    }
+
+  }
+
+}
+
+
+.mock-file {
+  width: 10rem;
+  height: .01rem;
+
+  @include lrg { width: 12rem;}
+  @include xlrg { width: 12rem;}
+}

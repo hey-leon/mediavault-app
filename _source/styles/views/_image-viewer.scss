@@ -1,0 +1,27 @@
+#imageViewer {
+  position: fixed;
+  bottom: 0;
+  width: 100%; height: 100%;
+  z-index: 500;
+  font-size: 0;
+
+
+  .image {
+    max-height: 100%; max-width: 100%;
+    background: url(resources/images/image_bg.gif) top left repeat;
+  }
+
+
+  .controls {
+    position: absolute;
+    left: 5%; bottom: 5%;
+    width: 90%;
+    border-radius: .125rem;
+    background-color: rgba($shade-900, .87);
+    z-index: 520;
+
+    @include sml { left: 0; bottom: 0; width: 100%; border-radius: 0; }
+  }
+
+
+}

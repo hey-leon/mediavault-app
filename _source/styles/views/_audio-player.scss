@@ -1,0 +1,70 @@
+#audio-player {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 500;
+
+  // The mini player
+  .mini-player {
+
+    &:focus { outline: none; }
+    position: relative;
+    z-index: 530;
+    user-select: none;
+
+    .album-art {
+      height: 5rem; width: 5rem;
+      background: url('') center no-repeat;
+      background-size: cover;}
+
+    .track-info {
+      padding: 0 .5rem;
+      height: 5rem;
+      overflow: hidden;
+
+      .info { overflow: hidden; height: 1.5rem;}
+    }
+
+  }
+
+
+  // The track que
+  .playlist {
+    position: relative;
+    height: 0;
+    overflow-y: scroll;
+    background: url('') center no-repeat;
+    background-size: cover;
+    z-index: 510;
+    user-select: none;
+
+    .queue {
+      position: relative;
+      padding: 0;
+      background: rgba(#eeeeee, 0.9);
+      backdrop-filter: blur(3px);
+    }
+
+  }
+
+
+  // The progress bar / seeker
+  #audioProgressBar {
+    height: .25rem;
+
+    #audioProgress {
+      height: 100%; width: 0;
+      box-shadow: 0 0 2px 1px rgba(0,0,0, .25); }
+
+  }
+
+
+  // The full control panel
+  .player-controls {
+    position: relative;
+    z-index: 520;
+    box-shadow: 0 0 16px 1px rgba(0,0,0, .5);
+  }
+
+
+}

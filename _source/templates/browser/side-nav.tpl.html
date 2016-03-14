@@ -1,0 +1,64 @@
+<!-- the menu side nav -->
+<md-sidenav class="side-nav md-sidenav-left md-whiteframe-2dp" md-component-id='menu' hide-gt-xs>
+  <div layout='column' layout-fill>
+
+    <md-content class='accent-bg-200 side-nav-banner' layout='row' layout-padding>
+      <img class='avatar' ng-src="{{b.user.image}}"/>
+      <div layout='row' layout-align='center center' flex>
+        <div layout='column'>
+          <span class='text-24 text-dark'>{{b.user.name}}</span>
+          <span class='text-12 text-dark'>{{b.user.email}}</span>
+        </div>
+      </div>
+    </md-content>
+
+    <md-content class='md-whiteframe-2dp side-nav-menu' flex>
+      <md-list>
+        <md-list-item ng-click='b.navigateTo(0)'><div layout='row' layout-align='space-between center' flex>
+          <span class='text-16 text-dark'>Home</span>
+          <i class="material-icons md-primary">home</i>
+        </div></md-list-item>
+
+        <md-list-item ng-click='b.navigateTo(1)'><div layout='row' layout-align='space-between center' flex>
+          <span class='text-16 text-dark'>Music</span>
+          <i class="material-icons md-primary">album</i>
+        </div></md-list-item>
+
+        <md-list-item ng-click='b.navigateTo(2)'><div layout='row' layout-align='space-between center' flex>
+          <span class='text-16 text-dark'>Video</span>
+          <i class="material-icons md-primary">movie</i>
+        </div></md-list-item>
+
+        <md-list-item ng-click='b.navigateTo(3)'><div layout='row' layout-align='space-between center' flex>
+          <span class='text-16 text-dark'>Pictures</span>
+          <i class="material-icons md-primary">photo</i>
+        </div></md-list-item>
+
+        <md-list-item ng-click='b.navigateTo(4)'><div layout='row' layout-align='space-between center' flex>
+          <span class='text-16 text-dark'>Files</span>
+          <i class="material-icons md-primary">description</i>
+        </div></md-list-item>
+      </md-list>
+      <md-divider></md-divider>
+      <md-list>
+        <md-list-item ng-click='b.upload()'><div layout='row' layout-align='space-between center' flex>
+          <span class='text-16 text-dark text-2'>Upload Files</span>
+          <i class="material-icons md-accent">file_upload</i>
+        </div></md-list-item>
+
+        <md-list-item ng-click=''><div layout='row' layout-align='space-between center' flex>
+          <span class='text-16 text-dark text-2'>Account Info</span>
+          <i class="material-icons md-accent">insert_chart</i>
+        </div></md-list-item>
+      </md-list>
+      <md-divider></md-divider>
+      <md-list>
+        <md-list-item ng-click='b.signOut()'><div layout='row' layout-align='space-between center' flex>
+          <span class='text-16 text-dark text-2'>Sign Out</span>
+          <i class="material-icons md-dark">exit_to_app</i>
+        </div></md-list-item>
+      </md-list>
+    </md-content>
+
+  </div>
+</md-sidenav>

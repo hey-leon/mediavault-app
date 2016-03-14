@@ -1,0 +1,57 @@
+.browser {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 200;
+
+  .menu {
+    position: relative;
+    z-index: 300;
+
+    .primary-bar {
+      position: relative;
+      z-index: 310;
+      .avatar {
+        padding: .5rem;
+        width: 4.5rem; height: 4.5rem;
+        border-radius: 50%;
+      }
+      .sign-out {
+        position: relative;
+        padding: 14px 8px 8px 8px;
+        .md-ripple-container { border-radius: .25rem; }
+      }
+    }
+
+    .secondary-bar {
+      position: relative;
+      z-index: 310;
+    }
+
+  }
+
+  .side-nav {
+    z-index: 400;
+    .side-nav-banner {
+      position: relative;
+      z-index: 401;
+      .avatar { padding: 1rem 0; border-radius: 50%; }
+    }
+    .side-nav-menu { position: relative; z-index: 402;}
+
+  }
+
+  .tabs {
+    md-tabs-wrapper {display: none;}
+    md-tabs-content-wrapper {top: 0;}
+    height: 100%;
+
+    .tab {
+      height: 100%;
+      padding-bottom: 8rem;
+    }
+
+  }
+
+
+}

@@ -1,0 +1,54 @@
+<div class='menu'>
+
+  <!-- the primary menu bar -->
+  <md-toolbar class='primary-bar md-primary md-whiteframe-4dp' layout='row' layout-align='space-between center'>
+
+    <div layout='row' layout-align='center center'>
+      <md-button class='md-icon-button md-accent' ng-click='b.toggleMenu()' hide-gt-xs>
+        <i class="material-icons md-light">menu</i>
+      </md-button>
+      <h4 class='md-toolbar-tools'>MediaVault</h4>
+    </div>
+
+    <div layout='row' layout-align='end center' layout-padding hide-xs flex>
+      <div layout='column' layout-align='center space-around'>
+        <span class='text-24 text-light'>{{b.user.name}}</span>
+        <span class='text-12 text-light'>{{b.user.email}}</span>
+      </div>
+      <img class='avatar' ng-src="{{b.user.image}}"/>
+      <div class='sign-out' ng-click='b.signOut()'
+           layout='column' layout-align='center center' md-ink-ripple>
+        <i class="material-icons md-light">exit_to_app</i>
+        <span class='text-12 text-light'>Sign Out</span>
+      </div>
+    </div>
+
+  </md-toolbar>
+
+  <md-divider hide-xs></md-divider>
+
+  <!-- secondary menu bar -->
+  <div class='secondary-bar md-whiteframe-4dp shade-bg-fff' layout='row' layout-align='space-between center' hide-xs>
+
+    <div layout='row' layout-align='start center' flex>
+      <md-tabs class='md-tab-labels-only' md-selected="b.currentTab" flex>
+        <md-tab><i class="material-icons md-dark">home</i></md-tab>
+        <md-tab><i class="material-icons md-dark">album</i></md-tab>
+        <md-tab><i class="material-icons md-dark">movie</i></md-tab>
+        <md-tab><i class="material-icons md-dark">photo</i></md-tab>
+        <md-tab><i class="material-icons md-dark">description</i></md-tab>
+      </md-tabs>
+    </div>
+
+    <div layout='row' layout-align='end center' flex='initial'>
+      <md-button class='md-icon-button' ng-click=''>
+        <i class="material-icons md-dark">insert_chart</i>
+      </md-button>
+      <md-button class='md-icon-button' ng-click='b.upload()'>
+        <i class="material-icons md-dark">file_upload</i>
+      </md-button>
+    </div>
+
+  </div>
+
+</div>

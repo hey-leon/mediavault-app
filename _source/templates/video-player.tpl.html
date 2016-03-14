@@ -1,0 +1,44 @@
+<div id='videoPlayer'
+     class='shade-bg-000'
+     ng-controller='VideoPlayer as vp'
+     ng-show='vp.open'
+     ng-mousemove='vp.mouseMoved()'
+     ng-mouseup='vp.seekDragged()'
+     layout='column'
+     layout-align='center center'>
+
+
+    <!-- Video Source -->
+    <video id='videoStream' class="md-whiteframe-8dp"></video>
+
+
+    <!-- Control Panel -->
+    <div class='control-panel' ng-mouseenter='vp.controlEnter()' ng-mouseleave='vp.controlLeave()' ng-show='vp.controls'>
+
+      <div id='videoProgressBar' class='shade-bg-500 md-whiteframe-4dp' ng-mousedown='vp.seekDrag()' flex>
+        <div id='videoProgress' class='accent-bg-400'></div>
+      </div>
+
+      <div class='controls md-whiteframe-4dp' layout='row' layout-align='start center'>
+        <div layout='row' layout-align='start center'>
+          <md-button class='md-icon-button md-ico-btn-36' ng-click="vp.togglePlay()">
+            <i class="material-icons md-36 md-light">{{vp.playpauseSymbol}}</i>
+          </md-button>
+          <md-button class='md-icon-button' ng-click="vp.toggleSound()">
+            <i class="material-icons md-light">{{vp.muteSymbol}}</i>
+          </md-button>
+        </div>
+        <div layout='row' layout-align='start center' layout-padding flex>
+          <div class="info text-16 text-light">{{vp.currentVideo.title}}</div>
+        </div>
+        <div layout='row' layout-align='end center'>
+          <md-button class='md-icon-button' ng-click="vp.close()">
+            <i class="material-icons md-light">close</i>
+          </md-button>
+        </div>
+      </div>
+
+    </div>
+
+
+</div>
