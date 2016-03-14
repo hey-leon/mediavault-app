@@ -3,21 +3,15 @@
 
   angular
     .module('Mediavault')
-    .controller('AuthCtrl', AuthCtrl)
+    .controller('AuthCtrl', AuthCtrl);
 
-
-  AuthCtrl.$inject = ['$scope', 'GoogleAuth']
-
+  AuthCtrl.$inject = ['$scope', 'GoogleAuth'];
 
   function AuthCtrl($scope, GoogleAuth){
-    var ctrl = this
-
+    var ctrl = this;
 
     /*  bindings  */
-
-    ctrl.signedIn = false
-
-
+    ctrl.signedIn = false;
 
 
     /*  methods  */
@@ -27,11 +21,8 @@
      * user signed in
      */
     function onSignIn(){
-
-      ctrl.signedIn = true
-
+      ctrl.signedIn = true;
       updatebindings()
-
     }
 
 
@@ -39,11 +30,8 @@
      * user signed out
      */
     function onSignOut(){
-
-      ctrl.signedIn = false
-
+      ctrl.signedIn = false;
       updatebindings()
-
     }
 
 
@@ -53,12 +41,8 @@
      function updatebindings() { if (!$scope.$$phase) $scope.$apply() }
 
 
-
-
     /*  init  */
-
     GoogleAuth.listen(onSignIn, onSignOut)
-
 
   }
 

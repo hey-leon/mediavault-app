@@ -5,65 +5,48 @@
  * @author Leon Pearce
  */
 (function() {
-
   'use strict';
 
   angular
     .module('Mediavault')
-    .service('GoogleAuth', GoogleAuth)
-
+    .service('GoogleAuth', GoogleAuth);
 
   function GoogleAuth() {
-    let service = this
-
+    let service = this;
 
     /*  accessors  */
-
-    service.listen = listen
-
-    service.signInBtn = signInBtn
-
-    service.signOut = signOut
-
-
+    service.listen = listen;
+    service.signInBtn = signInBtn;
+    service.signOut = signOut;
 
 
     /*  methods  */
+    const CLIENT_ID = '458427276391-0dtgnnbr7nukg6gvn91vqcmfumhvfcob.apps.googleusercontent.com',
+          SCOPES = 'email profile';
 
-    const CLIENT_ID = '458427276391-0dtgnnbr7nukg6gvn91vqcmfumhvfcob.apps.googleusercontent.com'
+    let   client,
+          user;
 
-    const SCOPES = 'email profile'
+    let   signedIn = false;
 
-    let client,
-        user
-
-    let signedIn = false
-
-    let onSignIn = [],
-        onSignOut = []
+    let   onSignIn = [],
+          onSignOut = [];
 
 
     /**
      * assigns listener cb's for sign in and sign out events
      */
     function listen(signInCB, signOutCB){
-
       if(typeof signInCB === 'function') {
-
-        onSignIn.push(signInCB)
-
-        if (signedIn) signInCB()
-
+        onSignIn.push(signInCB);
+        if (signedIn)
+          signInCB()
       }
-
       if(typeof signOutCB === 'function') {
-
         onSignOut.push(signOutCB)
-
-        if (!signedIn) signOutCB()
-
+        if (!signedIn)
+          signOutCB()
       }
-
     }
 
 
@@ -90,11 +73,12 @@
      * listens for sign out
      */
     function sessionStateChanged(sessionState) {
-
-      signedIn = sessionState
-
-      if (!signedIn) { user = {}; broadcast(onSignOut); console.log('signed out') }
-
+      signedIn = sessionState;
+      if (!signedIn) {
+        user = {};
+        broadcast(onSignOut);
+        console.log('signed out')
+      }
     }
 
 
@@ -109,9 +93,7 @@
           image: newUser.wc.Ph,
           token: newUser.hg.id_token
         }
-
         broadcast(onSignIn)
-
       }
     }
 
@@ -120,24 +102,18 @@
      * broadcast to listeners
      */
     function broadcast(listeners){
-      for(let CB of listeners) CB(user)
+      for(let CB of listeners)
+        CB(user)
     }
 
 
     /*  init  */
-
     gapi.load('auth2', () => {
-
-      client = gapi.auth2.init({ client_id: CLIENT_ID, scope: SCOPES })
-
-      client.isSignedIn.listen(sessionStateChanged)
-
-      client.currentUser.listen(userChanged)
-
+      client = gapi.auth2.init({ client_id: CLIENT_ID, scope: SCOPES });
+      client.isSignedIn.listen(sessionStateChanged);
+      client.currentUser.listen(userChanged);
       signInBtn('gSignIn')
-
     })
-
 
   }
 

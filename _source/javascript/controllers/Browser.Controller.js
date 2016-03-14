@@ -3,135 +3,164 @@
 
   angular
     .module('Mediavault')
-    .controller('BrowserController', BrowserController)
-
+    .controller('BrowserController', BrowserController);
 
   BrowserController.$inject = [
-                                '$scope',
-                                '$filter',
-                                '$mdSidenav',
-                                'GoogleAuth',
-                                'Vault',
-                                'Data',
-                                'File',
-                                'Uploader'
-                              ]
-
+                                '$scope', '$filter', '$mdSidenav', 'GoogleAuth',
+                                'Vault', 'Data', 'File', 'Uploader'
+                              ];
 
   function BrowserController($scope, $filter, $mdSidenav, GoogleAuth, Vault, Data, File, Uploader){
-    let ctrl = this
+    let ctrl = this;
 
     /*  bindings  */
+    ctrl.toggleMenu = toggleMenu;
+    ctrl.signOut = GoogleAuth.signOut;
 
-    ctrl.toggleMenu = toggleMenu
+    ctrl.upload = upload;
+    ctrl.action = action;
+    ctrl.download = download;
+    ctrl.delete = deletefile;
 
-    ctrl.signOut = GoogleAuth.signOut
-
-    ctrl.upload = upload
-
-    ctrl.action = action
-
-    ctrl.noProp = noProp
-
-    ctrl.download = download
-
-    ctrl.delete = deletefile
-
-    ctrl.navigateTo = navigateTo
-
-    ctrl.filterImages = filterImages
+    ctrl.navigateTo = navigateTo;
+    ctrl.filterImages = filterImages;
+    ctrl.noProp = noProp;
 
     ctrl.tabs = [
-
       {title: 'home', content: 'browser/tabs/home.tpl.html'},
       {title: 'music', content: 'browser/tabs/audio.tpl.html'},
       {title: 'video', content: 'browser/tabs/video.tpl.html'},
       {title: 'images', content: 'browser/tabs/images.tpl.html'},
       {title: 'files', content: 'browser/tabs/files.tpl.html'}
+    ];
 
-    ]
+    ctrl.currentTab = 1;
+    ctrl.showTabs = true;
+    ctrl.showInfo = false;
+    ctrl.showSettings = false;
 
-    ctrl.currentTab = 1
-
-    ctrl.showTabs = true
-
-    ctrl.showInfo = false
-
-    ctrl.showSettings = false
-
-    ctrl.collection = { audio: [], video: [], images: [], files: [] }
-
-    ctrl.user = {}
-
-    /**************************************************************************/
-    /*                          Browser Implementation                        */
-    /**************************************************************************/
-
-    let filter = { images: false }
+    ctrl.collection = { audio: [], video: [], images: [], files: [] };
+    ctrl.user = {};
 
 
-    function toggleMenu() { event.stopPropagation(); $mdSidenav('menu').toggle() }
+    /*  methods  */
+    let filter = { images: false };
 
+
+    /*
+     toggles if the menu is open (on sml screens)
+     */
+    function toggleMenu() {
+      event.stopPropagation();
+      $mdSidenav('menu').toggle()
+    }
+
+
+    /*
+     changes the current tab of the browser
+     */
     function navigateTo(newTab){
-      event.stopPropagation()
-      ctrl.currentTab = newTab
+      event.stopPropagation();
+      ctrl.currentTab = newTab;
       toggleMenu()
     }
 
+
+    /*
+     adds a file to the upload que in the uploader
+     */
     function upload(){
-      event.stopPropagation()
+      event.stopPropagation();
 
-      let fileBrowser = document.createElement('input')
-          fileBrowser.setAttribute('type', 'file')
-          fileBrowser.setAttribute('multiple', 'true')
-          fileBrowser.addEventListener('change', () => Uploader.add(fileBrowser.files))
+      let fileBrowser = document.createElement('input');
+          fileBrowser.setAttribute('type', 'file');
+          fileBrowser.setAttribute('multiple', 'true');
+          fileBrowser.addEventListener('change', () => Uploader.add(fileBrowser.files));
           fileBrowser.click()
-
     }
 
+
+    /*
+     tells the file service that a file needs to be passed an actioned to a listener
+     */
     function action(file, action){
-      event.stopPropagation()
+      event.stopPropagation();
       File.execute(file, action)
     }
 
+
+    /*
+     starts the download of a file
+     */
     function download(file){
-      event.stopPropagation()
-      let download = document.createElement('a')
-          download.href = file.url + user.token
-          download.setAttribute('download', file.title)
-          download.setAttribute('type', file.mimetype)
+      event.stopPropagation();
+      let download = document.createElement('a');
+          download.href = file.url + user.token;
+          download.setAttribute('download', file.title);
+          download.setAttribute('type', file.mimetype);
           download.click()
     }
 
-    function deletefile(file){ event.stopPropagation(); Vault.delete(file.id) }
 
+    /*
+     deletes a users file
+     */
+    function deletefile(file){
+      event.stopPropagation();
+      Vault.delete(file.id)
+    }
+
+
+    /*
+     changes the current filter to the images tab
+     */
     function filterImages(){
-      filter.images = !filter.images
+      filter.images = !filter.images;
       Data.images.filter('orderBy', 'title', filter.images)
     }
 
+
+    /*
+     stops event propogation
+     */
     function noProp(){ event.stopPropagation() }
 
+
+    /*
+     updates the audio collection
+     */
     function updateAudio(){ ctrl.collection.audio = Data.audio.get() }
 
+
+    /*
+     updates the video collection
+     */
     function updateVideo(){ ctrl.collection.video = Data.video.get() }
 
+
+    /*
+     updates the image collection
+     */
     function updateImages(){ ctrl.collection.images = Data.images.get() }
 
+
+    /*
+     updates the misc file collection
+     */
     function updateFiles(){ ctrl.collection.files = Data.files.get() }
 
+
+    /*
+     updates the user details
+     */
     function updateUser(){ ctrl.user = Data.user.get() }
 
 
-    /**************************************************************************/
-    /*                               Browser Init                             */
-    /**************************************************************************/
-
-
-    Data.audio.listen(updateAudio)
-    Data.video.listen(updateVideo)
-    Data.images.listen(updateImages)
-    Data.files.listen(updateFiles)
+    /*  Init  */
+    Data.audio.listen(updateAudio);
+    Data.video.listen(updateVideo);
+    Data.images.listen(updateImages);
+    Data.files.listen(updateFiles);
     Data.user.listen(updateUser)
 
   }
