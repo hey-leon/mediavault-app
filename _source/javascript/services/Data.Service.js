@@ -80,7 +80,7 @@
     */
     function listenUser(CB) {
       if (typeof CB === 'function')
-        listeners.user.push(CB)
+        listeners.user.push(CB);
       if (Object.keys(data.user).length > 0)
         CB()
     }
@@ -94,7 +94,7 @@
       for(let collection in data)
         data[collection].length = 0
 
-      data.user = newUser
+      data.user = newUser;
 
       for(let file of files){
         if (file.mimetype.search('audio') !== -1)
@@ -124,7 +124,7 @@
 
       let file = {
         'id': blob._id,
-        'url': `http://localhost:3000/${blob.uri}?id_token=`,
+        'url': `${Vault.server}/${blob.uri}?id_token=`,
         'mimetype': blob.mimetype,
         'title': meta.title || blob.name,
         'album': meta.album || 'unknown',
@@ -132,9 +132,9 @@
       };
 
       if ('thumburi' in blob)
-        file.thumburl = `http://localhost:3000/${blob.thumburi}?id_token=${data.user.token}`;
+        file.thumburl = `${Vault.server}/${blob.thumburi}?id_token=${data.user.token}`;
       else
-        file.thumburl = './resources/images/album_bg.png';
+        file.thumburl = 'resources/images/album_bg.png';
 
       data.audio.push(file)
     }
@@ -146,13 +146,13 @@
     function addVideo(blob) {
       let file = {
         'id': blob._id,
-        'url': `http://localhost:3000/${blob.uri}?id_token=`,
+        'url': `${Vault.server}/${blob.uri}?id_token=`,
         'mimetype': blob.mimetype,
         'title': blob.name
       };
 
       if ('thumburi' in blob)
-        file.thumburl = `http://localhost:3000/${blob.thumburi}?id_token=${data.user.token}`;
+        file.thumburl = `${Vault.server}/${blob.thumburi}?id_token=${data.user.token}`;
 
       data.video.push(file)
     }
@@ -164,13 +164,13 @@
     function addImage(blob) {
       let file = {
         'id': blob._id,
-        'url': `http://localhost:3000/${blob.uri}?id_token=`,
+        'url': `${Vault.server}/${blob.uri}?id_token=`,
         'mimetype': blob.mimetype,
         'title': blob.name
       };
 
       if ('thumburi' in blob)
-        file.thumburl = `http://localhost:3000/${blob.thumburi}?id_token=${data.user.token}`;
+        file.thumburl = `${Vault.server}/${blob.thumburi}?id_token=${data.user.token}`;
 
       data.images.push(file)
     }
@@ -182,15 +182,15 @@
     function addFile(blob) {
       let file = {
         'id': blob._id,
-        'url': `http://localhost:3000/${blob.uri}?id_token=`,
+        'url': `${Vault.server}/${blob.uri}?id_token=`,
         'mimetype': blob.mimetype,
         'title': blob.name
       };
 
       if ('thumburi' in blob)
-        file.thumburl = `http://localhost:3000/${blob.thumburi}?id_token=${data.user.token}`;
+        file.thumburl = `${Vault.server}/${blob.thumburi}?id_token=${data.user.token}`;
       else
-        file.thumburl = './resources/images/file_bg.png';
+        file.thumburl = 'resources/images/file_bg.png';
 
       data.files.push(file)
     }

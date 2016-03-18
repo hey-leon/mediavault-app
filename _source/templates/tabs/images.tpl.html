@@ -3,8 +3,8 @@
   <div class='panel'>
 
     <div layout='row' layout-align='start center'>
-        <md-subheader class="md-primary" flex><h2 class='title'>Music</h2></md-subheader>
-        <md-button class='order-button md-icon-button' ng-click='musicOrder = !musicOrder'><i class="material-icons md-24 md-dark">sort_by_alpha</i></md-button>
+        <md-subheader class="md-primary" flex><h2 class='title'>Images</h2></md-subheader>
+        <md-button class='order-button md-icon-button' ng-click='b.filterImages()'><i class="material-icons md-24 md-dark">sort_by_alpha</i></md-button>
     </div>
 
     <!-- the tile list of files  -->
@@ -12,11 +12,11 @@
 
       <!-- the files -->
       <div class=    'file'
-           ng-repeat='file in b.collection.audio | orderBy: "title" : musicOrder'>
+           ng-repeat='file in b.collection.images'>
 
-        <md-button class='tile' ng-click='b.action(file, "open")' style='background-image: url("{{file.thumburl}}")' >
+        <md-button class='tile' ng-style='{"background-image": "url({{file.thumburl}})"}' ng-click='b.action(file, "open")'>
 
-          <md-button class='menu'ng-click='action = !action; b.noProp()'>
+          <md-button class='menu' ng-click='action = !action; b.noProp()'>
             <i class="material-icons md-light">more_horiz</i>
           </md-button>
 
@@ -25,8 +25,8 @@
             <md-button class="action md-icon-button" ng-click='action = !action; b.download(file)'>
               <i class="material-icons  md-light">file_download</i>
             </md-button>
-            <md-button class="action md-icon-button" ng-click='action = !action; b.action(file, "queue")'>
-              <i class="material-icons md-light">queue_music</i>
+            <md-button class="action md-icon-button" ng-click='action = !action; b.action(file, "fullscreen")'>
+              <i class="material-icons md-light">fullscreen</i>
             </md-button>
             <md-button class="action md-icon-button" ng-click='action = !action; b.delete(file)'>
               <i class="material-icons md-light">delete</i>

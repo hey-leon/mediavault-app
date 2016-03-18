@@ -3,8 +3,8 @@
   <div class='panel'>
 
     <div layout='row' layout-align='start center'>
-        <md-subheader class="md-primary" flex><h2 class='title'>Files</h2></md-subheader>
-        <md-button class='order-button md-icon-button' ng-click='fileOrder = !fileOrder'><i class="material-icons md-24 md-dark">sort_by_alpha</i></md-button>
+        <md-subheader class="md-primary" flex><h2 class='title'>Video</h2></md-subheader>
+        <md-button class='order-button md-icon-button' ng-click='videoOrder = !videoOrder'><i class="material-icons md-24 md-dark">sort_by_alpha</i></md-button>
     </div>
 
     <!-- the tile list of files  -->
@@ -12,18 +12,21 @@
 
       <!-- the files -->
       <div class=    'file'
-           ng-repeat='file in b.collection.files | orderBy: "title" : fileOrder'>
+           ng-repeat='file in b.collection.video | orderBy: "title" : videoOrder'>
 
-        <md-button class='tile' style='background-image:url("{{file.thumburl}}");' ng-click='b.action(file, "open")'>
+        <md-button class='tile' ng-style='{"background-image": "url({{file.thumburl}})"}' ng-click='b.action(file, "open")'>
 
           <md-button class='menu' ng-click='action = !action; b.noProp()'>
             <i class="material-icons md-light">more_horiz</i>
           </md-button>
 
           <div class="actions" ng-show='action'>
-            <div class='overlay' ng-click='actions = !actions; b.noProp()'></div>
-            <md-button class="action md-icon-button" ng-click='action = !action; b.downlaod(file)'>
+            <div class='overlay' ng-click='action = !action; b.noProp()'></div>
+            <md-button class="action md-icon-button" ng-click='action = !action; b.download(file)'>
               <i class="material-icons  md-light">file_download</i>
+            </md-button>
+            <md-button class="action md-icon-button" ng-click='action = !action; b.action(file, "fullscreen")'>
+              <i class="material-icons md-light">fullscreen</i>
             </md-button>
             <md-button class="action md-icon-button" ng-click='action = !action; b.delete(file)'>
               <i class="material-icons md-light">delete</i>
@@ -32,7 +35,7 @@
 
         </md-button>
 
-        <div class='text-dark text-16'layout='row' layout-align='start center'>{{file.title}}</div>
+        <div class='text-dark text-16' layout='row' layout-align='start center'>{{file.title}}</div>
 
       </div>
 

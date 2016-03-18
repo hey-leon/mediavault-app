@@ -5,9 +5,9 @@
     .module('Mediavault')
     .service('Uploader', Uploader);
 
-  Uploader.$inject = ['Vault'];
+  Uploader.$inject = ['$mdToast', 'Vault'];
 
-  function Uploader(Vault) {
+  function Uploader($mdToast, Vault) {
     let service = this;
 
     /*  accessors  */
@@ -29,26 +29,44 @@
 
       if (!uploading) {
         uploading = true;
-        upload()
+        startUpload()
       }
 
     }
 
+    /**
+     * start upload toasts the user and then toasts on completion
+     */
+    function startUpload(){
+      $mdToast.show({
+        'templateUrl': 'toasts/uploading.tpl.html',
+        'hideDelay': false
+      }).then(() => {
+        $mdToast.show({
+          'templateUrl': 'toasts/upload-success.tpl.html'
+        })
+      });
+
+      upload(() => { $mdToast.hide() })
+    }
+
 
     /**
-     * manages selecting upload fn by mimeType of file from queue recursively
+     * uploads files recursively from que
      * @async
      */
-    function upload() {
-      let file = queue[0];
+    function upload(CB) {
+        let file = queue[0];
 
-      Vault.upload(file).then(() => {
-        queue.splice(0, 1);
-        if (queue.length > 0)
-          upload();
-        else
-          uploading = false
-      })
+        Vault.upload(file).then(() => {
+          queue.splice(0, 1);
+          if (queue.length > 0) {
+            upload(CB)
+          } else {
+            uploading = false;
+            CB()
+          }
+        })
     }
 
 

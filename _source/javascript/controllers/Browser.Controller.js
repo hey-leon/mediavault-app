@@ -6,11 +6,11 @@
     .controller('BrowserController', BrowserController);
 
   BrowserController.$inject = [
-                                '$scope', '$filter', '$mdSidenav', 'GoogleAuth',
-                                'Vault', 'Data', 'File', 'Uploader'
+                                '$scope', '$filter', '$mdSidenav', '$mdToast',
+                                'GoogleAuth', 'Vault', 'Data', 'File', 'Uploader'
                               ];
 
-  function BrowserController($scope, $filter, $mdSidenav, GoogleAuth, Vault, Data, File, Uploader){
+  function BrowserController($scope, $filter, $mdSidenav, $mdToast, GoogleAuth, Vault, Data, File, Uploader){
     let ctrl = this;
 
     /*  bindings  */
@@ -27,11 +27,11 @@
     ctrl.noProp = noProp;
 
     ctrl.tabs = [
-      {title: 'home', content: 'browser/tabs/home.tpl.html'},
-      {title: 'music', content: 'browser/tabs/audio.tpl.html'},
-      {title: 'video', content: 'browser/tabs/video.tpl.html'},
-      {title: 'images', content: 'browser/tabs/images.tpl.html'},
-      {title: 'files', content: 'browser/tabs/files.tpl.html'}
+      {title: 'home', content: 'tabs/home.tpl.html'},
+      {title: 'music', content: 'tabs/audio.tpl.html'},
+      {title: 'video', content: 'tabs/video.tpl.html'},
+      {title: 'images', content: 'tabs/images.tpl.html'},
+      {title: 'files', content: 'tabs/files.tpl.html'}
     ];
 
     ctrl.currentTab = 1;
@@ -76,7 +76,8 @@
           fileBrowser.setAttribute('type', 'file');
           fileBrowser.setAttribute('multiple', 'true');
           fileBrowser.addEventListener('change', () => Uploader.add(fileBrowser.files));
-          fileBrowser.click()
+          fileBrowser.click();
+
     }
 
 

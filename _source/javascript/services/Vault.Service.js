@@ -16,7 +16,7 @@
     service.delete = deletefile;
     service.listen = listen;
 
-    service.API = 'http://localhost:3000/api/file';
+    service.server = 'http://localhost:3000';
 
 
     /* Methods */
@@ -44,7 +44,7 @@
         });
 
         filesReq.withCredentials = true;
-        filesReq.open('POST', service.API);
+        filesReq.open('POST', `${service.server}/api/file`);
         filesReq.setRequestHeader('authorization', user.token);
         filesReq.send(data)
 
@@ -70,7 +70,7 @@
       });
 
       filesReq.withCredentials = true;
-      filesReq.open('PATCH', `${service.API}/${id}`);
+      filesReq.open('PATCH', `${service.server}/api/file/${id}`);
       filesReq.setRequestHeader('authorization', user.token);
 
       filesReq.send(body)
@@ -90,7 +90,7 @@
       });
 
       filesReq.withCredentials = true;
-      filesReq.open('Delete', `${service.API}/${id}`);
+      filesReq.open('Delete', `${service.server}/api/file/${id}`);
       filesReq.setRequestHeader('authorization', user.token);
 
       filesReq.send()
@@ -122,7 +122,7 @@
       });
 
       filesReq.withCredentials = true;
-      filesReq.open('GET', service.API);
+      filesReq.open('GET', `${service.server}/api/file`);
       filesReq.setRequestHeader('authorization', user.token);
       filesReq.send()
     }
