@@ -4,7 +4,7 @@ module.exports = function (config) {
     reporters: ['spec'],
     browsers: ['PhantomJS'],
     files: [
-      '_build/resources/frameworks/angular/angular.min.js',
+      '_build/resources/frameworks/angular.min.js',
       '_build/app.js',
       '_tests/**/*.js'
     ]
