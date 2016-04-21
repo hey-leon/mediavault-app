@@ -16,7 +16,7 @@
     service.delete = deletefile;
     service.listen = listen;
 
-    service.server = 'http://localhost:3000';
+    service.server = 'http://www.mediavault.xyz:3000';
 
 
     /* Methods */
