@@ -48,7 +48,7 @@ gulp.task('javascript:tasks', () => {
 
 /*  stylesheets  */
 gulp.task('stylesheets', ['stylesheets:tasks'], () => { bsync.reload() })
-gulp.task('stylesheets', () => {
+gulp.task('stylesheets:tasks', () => {
   return gulp.src([ '_source/styles/**/*.scss', '!_source/styles/**/_*' ])
       .pipe(sass({ outputStyle: 'expanded' }))
       .pipe(prefix({ browsers: ['> 5%'] }))
