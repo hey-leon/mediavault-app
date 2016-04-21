@@ -1,4 +1,5 @@
 import gulp from 'gulp'
+import path from 'path'
 import del from 'del'
 import rename from 'gulp-rename'
 import concat from 'gulp-concat'
