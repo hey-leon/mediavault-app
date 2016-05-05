@@ -16,7 +16,7 @@
     service.delete = deletefile
     service.listen = listen
 
-    service.server = 'http://localhost:3000' // 52.63.248.0
+    service.server = 'http://52.63.248.0:3000' // 52.63.248.0
 
     /* Methods */
     let [ files, listeners, user ] = [ [], [], {} ]
